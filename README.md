@@ -3,8 +3,11 @@ Terceiro Projeto de MPEI
 
 
 TO-DO:
-Opção 2
-Opção 3
+Opção 2 - Select genre G
+          Get most similar user U to our user S
+          List movies U has seen and S hasn't that are G
+
+Opção 3 - Distancia de Jaccard n'stuff
 
 
 DONE:
