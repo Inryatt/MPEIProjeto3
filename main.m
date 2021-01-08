@@ -13,9 +13,9 @@ movies = readcell("u_item.txt");
 % 9 - Documentary                           19 - War                      
 % 10 - Drama                                20 - Western
 
-%% Catação do ID
-% 1a coluna - user id
-% 2a coluna - movie id
+%% Importar informação externa
+% 1a coluna - user ID
+% 2a coluna - movie ID
 % 3a coluna - rating (1 a 5)
 
 
@@ -28,31 +28,22 @@ users = unique(u(:,1)); % Extrai os IDs dos utilizadores
 
 n_movies = length(unique(u(:,2))); 
 % verificar o número de filmes diferentes (tamanho máximo do array de filmes)
+%% Menu
 
-%% Inicialização do user
-userid = input("Insert User ID (1 to 943): ");
+% Pedir o user ID ao utilizador
+userid=get_user();
+choice=0;
 
-while floor(userid) ~= userid || userid < 1 || userid > 943
-    userid = input("ID must be a integer! (1 to 943): ");
-end
-choice = 0;
+
+
 while choice ~= 4
-    choice = showMenu(movies);
-end
-
-disp("Goodbye! :)");
-clear choice;
-
-%% Functions
-
-function inp = showMenu(movies)
-    fprintf("1 - Your Movies\n2 - Get Suggestions\n3 - Search Title\n4 - Exit\n");
-    inp = input("Select choice: " );
-    while floor(inp) ~= inp || inp < 1 || inp > 4
-        inp = input("Choice must be a integer! (1 to 4): ");
-    end
-    
-    switch inp
+    fprintf("\n1 - Your Movies\n2 - Get Suggestions\n3 - Search Title\n4 - Exit\n\n");
+    choice = get_choice();       
+    switch choice
+        case 1 
+            % Mostrar filmes vistos pelo utilizador
+            show_movies(userid,u,movies);
+        
         case 3
             name = input("Write a string: ", 's');
             C1 = unique(strsplit(lower(name)));
@@ -63,8 +54,29 @@ function inp = showMenu(movies)
                 C2 = unique(strsplit(lower(filme)));
                 distJ = 1 - (length(intersect(C1,C2))/length(union(C1,C2)))
             end
-            
-            
     end
     
+end
+
+disp("Goodbye! :)");
+clear choice;
+
+%% Functions
+
+% Inicialização do user
+function userid=get_user()
+    userid = input("Insert User ID (1 to 943): ");
+
+    while floor(userid) ~= userid || userid < 1 || userid > 943
+        userid = input("ID must be a integer! (1 to 943): ");
+    end
+end
+
+function choice=get_choice()
+    choice = input("Select choice: " );
+
+    while floor(choice) ~= choice || choice < 1 || choice > 4
+        choice = input("Choice must be a integer! (1 to 4): ");
+    end
+    newline;
 end
