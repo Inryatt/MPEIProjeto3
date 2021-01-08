@@ -46,7 +46,7 @@ while choice ~= 4
         
         case 3
         
-            % Maneira sem o minHash
+            % Maneira sem o minHash bla
             name = input("Write a string: ", 's');
             C1 = unique(strsplit(lower(name)));
             distancias = zeros(1, size(movies,1));
