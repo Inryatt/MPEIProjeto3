@@ -1,6 +1,8 @@
 %% Criação da cell dos filmes
 movies = readcell("u_item.txt");
-
+genres=["","unknown","Action","Adventure","Animation","Children's",...
+    "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
+    "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
 % coluna 1 é o nome do filme e as colunas 2 - 20 são os gêneros do filme,
 % que podem ser:                            11 - Fantasy
 % 2 - unknown                               12 - Film-Noir
@@ -42,8 +44,11 @@ while choice ~= 4
     switch choice
         case 1 
             % Mostrar filmes vistos pelo utilizador
-            show_movies(userid,u,movies);
+            show_movies(userid,u,movies,genres);
         
+        case 2
+            genre=get_genre();
+            
         case 3
             search(movies);
     end
@@ -70,5 +75,20 @@ function choice=get_choice()
     while floor(choice) ~= choice || choice < 1 || choice > 4
         choice = input("Choice must be a integer! (1 to 4): ");
     end
+    newline;
+end
+
+function genre=get_genre()
+    genres=["","unknown","Action","Adventure","Animation","Children's",...
+    "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
+    "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
+
+    fprintf("1- Action   2- Adventure  3- Animation   4- Children’s\n5- Comedy   6- Crime      7- Documentary 8- Drama\n9- Fantasy  10- Film-Noir 11- Horror     12- Musical\n13- Mystery 14- Romance   15- Sci-Fi     16- Thriller\n17- War     18- Western\n\n");
+    genre = input("Select genre: " );
+        
+    while floor(genre) ~= genre || genre < 1 || genre > 18
+        genre = input("Choice must be a integer! (1 to 18): ");
+    end
+    fprintf("Selected genre: %s\n",genres(genre+2));
     newline;
 end

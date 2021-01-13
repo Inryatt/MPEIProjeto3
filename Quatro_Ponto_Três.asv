@@ -1,0 +1,23 @@
+
+udata = load('u.data'); % Carrega o ficheiro dos dados dos filmes
+% Fica apenas com as duas primeiras colunas
+u= udata(1:end,1:2); clear udata;
+% u = user e filme que ele assistiu
+% Lista de utilizadores
+users = unique(u(:,1)); % Extrai os IDs dos utilizadores
+
+%%
+% C ́odigo base para detec ̧ ̃ao de pares similares
+udata=load("u.data");
+% Carrega o ficheiro dos dados dos filmes
+% Fica apenas com as duas primeiras colunas
+u= udata(1:end,1:2);
+clear udata;
+% Lista de utilizadores
+users = unique(u(:,1));
+% Extrai os IDs dos utilizadoresNu=length(users);
+% N ́umero de utilizadores% Constr ́oi a lista de filmes para cada utilizadorSet= cell(Nu,1);
+% Usa c ́elulasforn = 1:Nu,% Para cada utilizador
+% Obt ́em os filmes de cada umind =find(u(:,1) == users(n));
+% E guarda num array. Usa c ́elulas porque utilizador tem um n ́umero
+% diferente de filmes. Se fossem iguais podia ser um arraySet{n} = [Set{n} u(ind,2)];end
