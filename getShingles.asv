@@ -1,0 +1,12 @@
+function shingles = getShingles(str,ns)
+    N = strlength(str);
+    shingles = cell(1,N-ns+1);
+    
+    count = 1;
+    
+    for ch=1:
+        
+    end
+    
+end
+

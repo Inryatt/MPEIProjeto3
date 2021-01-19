@@ -1,5 +1,5 @@
 %% Criação da cell dos filmes
-movies = readcell("u_item.txt");
+moviesData = readcell("u_item.txt");
 genres=["","unknown","Action","Adventure","Animation","Children's",...
     "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
     "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
@@ -15,31 +15,35 @@ genres=["","unknown","Action","Adventure","Animation","Children's",...
 % 9 - Documentary                           19 - War                      
 % 10 - Drama                                20 - Western
 
-%% Importar informação externa
+%% Importar informação externa 
 % 1a coluna - user ID
 % 2a coluna - movie ID
 % 3a coluna - rating (1 a 5)
 
-
+%% OBSERVAÇÃO: FAZER EM UM SCRIPT A PARTE AS COISAS DE INICIALIZAÇÃO (VER NO GUIÃO OU CONFIRMAR COM O DIOGO :') )
 udata = load('u.data'); % Carrega o ficheiro dos dados dos filmes
 % Fica apenas com as duas primeiras colunas
 u= udata(1:end,1:2); clear udata;
 % u = user e filme que ele assistiu
 % Lista de utilizadores
 users = unique(u(:,1)); % Extrai os IDs dos utilizadores
+movies = unique(u(:,2));
 
 n_movies = length(unique(u(:,2))); 
 % verificar o número de filmes diferentes (tamanho máximo do array de filmes)
 
-%% criar a minHash
+%% criar as minHashs
 clc;
-k = 200;
+k = 50;
+%% 
 minHash = createMinHash(u,k);
-
-%% teste min
-a = [12 13 15 8];
+%%
+shinglesMinHash = createShinglesMinHash(ns, k, moviesData, movies);
+% gera a minHash entre a relação movies
+%% teste min (apagar depois)
+a = [12 13 15 8]; 
 b = [8 15 7 9];
-
+min(a,b); % --> [8 13 7 8];
 
 %% Menu
 clc;
@@ -47,21 +51,22 @@ clc;
 userid=get_user();
 choice=0;
 
-
-
 while choice ~= 4
     fprintf("\n1 - Your Movies\n2 - Get Suggestions\n3 - Search Title\n4 - Exit\n\n");
     choice = get_choice();       
     switch choice
         case 1 
             % Mostrar filmes vistos pelo utilizador
-            show_movies(userid,u,movies,genres);
+            show_movies(userid,u,moviesData,genres);
         
         case 2
             genre=get_genre();
+            distancias = compareUsers(userid, users, minHash);
+            [distancia,userMaisProx] = min(distancias);
             
         case 3
-            search(movies);
+            ns = 2; % number of shingles
+            dist2 = search(ns, k, moviesData, movies);
     end
     
 end

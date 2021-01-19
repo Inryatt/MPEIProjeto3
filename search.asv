@@ -1,22 +1,26 @@
-function distancias = search(shinglesMinHash,ns,k,n_movies)
+function search(ns, k, moviesCell, moviesId)
+    % a minHash é suposta ser feita como a outra, porém cada coluna são
+    % moviesId (ao invés dos users) e eles contém todos os shingles (ao
+    % invés dos moviesId)
+    moviesName = moviesCell(:,1);
+    % conjunto de cells, com cada título do movie
+    
+    minHash = zeros(k,length(moviesId));
+    
+    % minHash vai ser uma matriz em que as linhas representam uma hash
+    % function e as colunas representam cada movie
     
     name = input("Write a string: ", 's');
+    name_shingles = getShingles(name,ns);
     
-    [name_shingles,count] = getShingles(name,ns);
+    movie = moviesName{1};
+    [sh,count] = 
     
-    namehash = inf(k,1);
-
-    for s=1:count
-        tempHash(:,1) = alt_DJB31MA(name_shingles{s},100,k); 
-        % fazer as k hash functions para cada movie
-        namehash = min(namehash, tempHash);
-        % atualiza o valor da hash para conter o min para cada movie
-    end
-    distancias = ones(1,n_movies);
+    %for m=1:length(moviesId)
+        
+    %end
     
-    for m=1:n_movies
-        distancias(m) = 1 - sum(namehash == shinglesMinHash(:,m))/k;
-    end
+    
     
 %%    Maneira de se fazer não utilizando minHashs
 %     C1 = unique(strsplit(lower(name)));

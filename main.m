@@ -1,5 +1,5 @@
 %% Criação da cell dos filmes
-movies = readcell("u_item.txt");
+moviesData = readcell("u_item.txt");
 genres=["","unknown","Action","Adventure","Animation","Children's",...
     "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
     "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
@@ -27,15 +27,21 @@ u= udata(1:end,1:2); clear udata;
 % u = user e filme que ele assistiu
 % Lista de utilizadores
 users = unique(u(:,1)); % Extrai os IDs dos utilizadores
+movies = unique(u(:,2));
 
 n_movies = length(unique(u(:,2))); 
 % verificar o número de filmes diferentes (tamanho máximo do array de filmes)
 
-%% criar a minHash
+ns = 4; % number of shingles
+%% criar as minHashs
 clc;
 k = 50;
+%% 
 minHash = createMinHash(u,k);
-
+% gera a minHash entre a relação users/movies
+%%
+shinglesMinHash = createShinglesMinHash(ns, k, moviesData, movies);
+% gera a minHash entre a relação movies/shingles
 %% teste min (apagar depois)
 a = [12 13 15 8]; 
 b = [8 15 7 9];
@@ -53,7 +59,7 @@ while choice ~= 4
     switch choice
         case 1 
             % Mostrar filmes vistos pelo utilizador
-            show_movies(userid,u,movies,genres);
+            show_movies(userid,u,moviesData,genres);
         
         case 2
             genre=get_genre();
@@ -61,7 +67,13 @@ while choice ~= 4
             [distancia,userMaisProx] = min(distancias);
             
         case 3
-            search(movies);
+            dist2 = search(shinglesMinHash, ns, k, n_movies);
+            [distancia,pos] = mink(dist2,5);
+            for i=1:5
+                m = moviesData(pos(i));
+                fprintf("%20s \t\t %5f\n",m{1},distancia(i));
+            end
+    
     end
     
 end
