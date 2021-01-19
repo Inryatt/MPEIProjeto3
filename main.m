@@ -15,12 +15,12 @@ genres=["","unknown","Action","Adventure","Animation","Children's",...
 % 9 - Documentary                           19 - War                      
 % 10 - Drama                                20 - Western
 
-%% Importar informação externa
+%% Importar informação externa 
 % 1a coluna - user ID
 % 2a coluna - movie ID
 % 3a coluna - rating (1 a 5)
 
-
+%% OBSERVAÇÃO: FAZER EM UM SCRIPT A PARTE AS COISAS DE INICIALIZAÇÃO (VER NO GUIÃO OU CONFIRMAR COM O DIOGO :') )
 udata = load('u.data'); % Carrega o ficheiro dos dados dos filmes
 % Fica apenas com as duas primeiras colunas
 u= udata(1:end,1:2); clear udata;
@@ -47,8 +47,6 @@ clc;
 userid=get_user();
 choice=0;
 
-
-
 while choice ~= 4
     fprintf("\n1 - Your Movies\n2 - Get Suggestions\n3 - Search Title\n4 - Exit\n\n");
     choice = get_choice();       
@@ -59,6 +57,8 @@ while choice ~= 4
         
         case 2
             genre=get_genre();
+            distancias = compareUsers(userid, users, minHash);
+            [distancia,userMaisProx] = min(distancias);
             
         case 3
             search(movies);

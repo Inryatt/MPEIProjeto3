@@ -13,7 +13,7 @@ function minHash = createMinHash(udata,k)
     % comparar a semelhança de Jaccard entre 2 users, é feito uma 
     % comparação de quantos valores iguais eles tem na msm linha/numero de 
     % linhas.
-    u = 1; % ponteiro para o usuário
+    u = 1; % ponteiro/indice para o usuário
     count = 1; % conta o número de usuários
     while count <= nUsers
         nmovies = sum(users == users(u));
