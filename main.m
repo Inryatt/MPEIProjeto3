@@ -32,10 +32,11 @@ movies = unique(u(:,2));
 n_movies = length(unique(u(:,2))); 
 % verificar o número de filmes diferentes (tamanho máximo do array de filmes)
 
-ns = 4; % number of shingles
+ns = 3; % number of shingles
 %% criar as minHashs
 clc;
 k = 50;
+
 %% 
 minHash = createMinHash(u,k);
 % gera a minHash entre a relação users/movies
@@ -70,8 +71,10 @@ while choice ~= 4
             dist2 = search(shinglesMinHash, ns, k, n_movies);
             [distancia,pos] = mink(dist2,5);
             for i=1:5
-                m = moviesData(pos(i));
-                fprintf("%20s \t\t %5f\n",m{1},distancia(i));
+                if distancia(i) <= 0.99 % print se <= 0.99
+                    m = moviesData(pos(i));
+                    fprintf("%40s \t\t %5f\n",m{1},distancia(i));
+                end
             end
     
     end

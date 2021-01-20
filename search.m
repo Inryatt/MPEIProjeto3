@@ -1,8 +1,14 @@
 function distancias = search(shinglesMinHash,ns,k,n_movies)
-    
+
     name = input("Write a string: ", 's');
+    while strlength(name) < ns 
+        % o nome tem de pelo menos ter comprimento >= numero de shingles
+        disp("Input needs to be more than " + (ns-1) + " characters!");
+        name = input("Write a string: ", 's');
+    end
     
     [name_shingles,count] = getShingles(name,ns);
+
     
     namehash = inf(k,1);
 

@@ -14,8 +14,7 @@ function minHash = createMinHash(udata,k)
     % comparação de quantos valores iguais eles tem na msm linha/numero de 
     % linhas.
     u = 1; % ponteiro/indice para o usuário
-    count = 1; % conta o número de usuários
-    while count <= nUsers
+    for count=1:nUsers
         nmovies = sum(users == users(u));
         user_movies = movies(u:u+nmovies-1); 
         % matriz que diz os ids dos filmes de cada user
@@ -29,9 +28,7 @@ function minHash = createMinHash(udata,k)
         end
         minHash(:,count) = hash;
         u = u + nmovies; % ignorar os outros users iguais
-        count = count+1;
-        
-        % (ou seja, escolher o próximo utilizador)
+
     end
 end
 
