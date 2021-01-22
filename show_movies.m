@@ -1,5 +1,5 @@
 function show_movies(userid,udata,movies,genres)
-    tmp=udata(:,1)== userid % aqui obtemos um array binário: 1 se a primeira coluna 
+    tmp=udata(:,1)== userid; % aqui obtemos um array binário: 1 se a primeira coluna 
                             % tiver valor igual ao userid que pretendemos
     uinfo=udata(tmp,:); % tira-se as linhas em que temos 1s no array acima
     movieid=uinfo(:,2); % obtém-se os ids dos filmes vistos pelo utilizador
