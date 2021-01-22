@@ -4,7 +4,6 @@ function show_movies(userid,udata,movies,genres)
     movieid=uinfo(:,2);
     for i=1:length(movieid)
         toPrint="";
-        name="";
         tmpgen=[];
         name=movies{i,1};
         for k=2:length(genres)
