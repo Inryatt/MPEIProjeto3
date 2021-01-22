@@ -63,33 +63,18 @@ while choice ~= 4
             show_movies(userid,u,moviesData,genres);
         
         case 2
-            genre=get_genre();
-            newline;
+            genre=get_genre(); % pede ao utilizador para escolher o género pretendido64
+            
             distancias = compareUsers(userid, users, minHash);
             [distancia,userMaisProx] = min(distancias); % obtém-se o utilizador mais similar a nós
+            
             userMaisProx_movies=get_movies(userMaisProx,udata); % obtém-se os ids dos filmes vistos pelo utilizador mais próximo
             user_movies=get_movies(userid,udata); % obtém-se os ids dos filmes do nosso utilizador
             unwatched_movies=setdiff(userMaisProx_movies,user_movies); % obtém-se os filmes vistos pelo userMaisProx que nao tenham 
-            unwatched_movies=moviesData(unwatched_movies,:);
-            suggestions=[];
-            recs=0;
+            unwatched_movies=moviesData(unwatched_movies,:); % Passar os ids dos filmes à informação referente a cada um
             
-            for i=1:length(unwatched_movies)
-                if unwatched_movies{i,(genre+1)}==1
-                   fprintf("%s\n",unwatched_movies{i,1});
-                   recs=recs+1;
-                end
-            end
+            print_by_genre(unwatched_movies,genre);
             
-            if recs==0
-               disp("Não temos nenhuma sugestão para o género escolhido! :( "); 
-            end
-            
-            %suggestions=suggestions{suggestions{genre==1},genre};
-            %tentativa de dar single line nisto, nao funciona
-            %show_movies_by_list(unwatched_movies,get_genre)
-            % sido vistos pelo nosso user
-            %userMaisProx_movies=moviesData(:,genre+1==1);
             
             
         case 3
@@ -130,7 +115,7 @@ function choice=get_choice()
 end
 
 function genre=get_genre()
-    genres=["","unknown","Action","Adventure","Animation","Children's",...
+    genres=["unknown","Action","Adventure","Animation","Children's",...
     "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
     "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
 
@@ -143,4 +128,5 @@ function genre=get_genre()
     genre=genre+1;
     fprintf("Selected genre: %s\n",genres(genre));
     newline;
+
 end
