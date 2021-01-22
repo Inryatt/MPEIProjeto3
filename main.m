@@ -73,7 +73,7 @@ while choice ~= 4
             unwatched_movies=setdiff(userMaisProx_movies,user_movies); % obtém-se os filmes vistos pelo userMaisProx que nao tenham 
             unwatched_movies=moviesData(unwatched_movies,:); % Passar os ids dos filmes à informação referente a cada um
             
-            print_by_genre(unwatched_movies,genre);
+            print_by_genre(unwatched_movies,genre); % prints the movies of the desired genre
             
             
             
