@@ -38,7 +38,7 @@ function initi=initialize()
     n_movies = length(unique(u(:,2))); 
     % verificar o número de filmes diferentes (tamanho máximo do array de filmes)
 
-    ns = 3; % number of shingles
+    ns = 4; % number of shingles
     %% criar as minHashs
 
     k = 150;
