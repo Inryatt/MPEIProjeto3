@@ -7,7 +7,8 @@ function initi=initialize()
     moviesData = readcell("u_item.txt");
     genres=["","unknown","Action","Adventure","Animation","Children's",...
         "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
-        "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
+        "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War",...
+        "Western"];
     % coluna 1 é o nome do filme e as colunas 2 - 20 são os gêneros do filme,
     % que podem ser:                            11 - Fantasy
     % 2 - unknown                               12 - Film-Noir
@@ -40,7 +41,7 @@ function initi=initialize()
     ns = 3; % number of shingles
     %% criar as minHashs
 
-    k = 50;
+    k = 150;
 
     %% 
     minHash = createMinHash(u,k);

@@ -45,8 +45,13 @@ while choice ~= 4
             for i=1:5
                 if distancia(i) <= 0.99 % print se <= 0.99
                     m = moviesData(pos(i));
-                    fprintf("%40s \t\t %5f\n",m{1},distancia(i));
+                    fprintf("%-50s \t\t %-5f\n",m{1},distancia(i));
+                else
+                    break
                 end
+            end
+            if i == 1 % se não houve nenhum print
+                fprintf("No movie with that conditions...\n")
             end
     
     end
