@@ -1,7 +1,8 @@
 function print_by_genre(movies,genre)  
     matches=0; %inicialização do contador
-    for i=1:length(movies)
-        if movies{i,(genre+1)}==1 % se o filme pertencer ao género escolhido
+    siz = size(movies);
+    for i=1:siz
+        if movies{i,(genre)}==1 % se o filme pertencer ao género escolhido
             fprintf("%s\n",movies{i,1}); % é impresso
             matches=matches+1; % e aumenta-se o número de filmes encontrados
         end

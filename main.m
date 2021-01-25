@@ -82,7 +82,7 @@ function choice=get_choice()
 end
 
 function genre=get_genre()
-    genres=["unknown","Action","Adventure","Animation","Children's",...
+    genres=["", "unknown","Action","Adventure","Animation","Children's",...
     "Comedy", "Crime","Documentary","Drama","Fantasy","Film-Noir",...
     "Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
 
@@ -92,7 +92,7 @@ function genre=get_genre()
     while floor(genre) ~= genre || genre < 1 || genre > 18
         genre = input("Choice must be a integer! (1 to 18): ");
     end
-    genre=genre+1;
+    genre=genre+2;
     fprintf("Selected genre: %s\n",genres(genre));
     newline;
 
