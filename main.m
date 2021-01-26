@@ -25,17 +25,25 @@ while choice ~= 4
             show_movies(userid,u,moviesData,genres);
         
         case 2
-            genre=get_genre(); % pede ao utilizador para escolher o género pretendido64
+            genre=get_genre(); 
+            % pede ao utilizador para escolher o género pretendido64
             
             distancias = compareUsers(userid, users, minHash);
-            [distancia,userMaisProx] = min(distancias); % obtém-se o utilizador mais similar a nós
+            [distancia,userMaisProx] = min(distancias); 
+            % obtém-se o utilizador mais similar a nós
             
-            userMaisProx_movies=get_movies(userMaisProx,udata); % obtém-se os ids dos filmes vistos pelo utilizador mais próximo
-            user_movies=get_movies(userid,udata); % obtém-se os ids dos filmes do nosso utilizador
-            unwatched_movies=setdiff(userMaisProx_movies,user_movies); % obtém-se os filmes vistos pelo userMaisProx que nao tenham 
-            unwatched_movies=moviesData(unwatched_movies,:); % Passar os ids dos filmes à informação referente a cada um
+            userMaisProx_movies=get_movies(userMaisProx,udata); 
+            % obtém-se os ids dos filmes vistos 
+            % pelo utilizador mais próximo
+            user_movies=get_movies(userid,udata); 
+            % obtém-se os ids dos filmes do nosso utilizador
+            unwatched_movies=setdiff(userMaisProx_movies,user_movies); 
+            % obtém-se os filmes vistos pelo userMaisProx que nao tenham 
+            unwatched_movies=moviesData(unwatched_movies,:); 
+            % Passar os ids dos filmes à informação referente a cada um
             
-            print_by_genre(unwatched_movies,genre); % prints the movies of the desired genre
+            print_by_genre(unwatched_movies,genre); 
+            % prints the movies of the desired genre
             
             
             
