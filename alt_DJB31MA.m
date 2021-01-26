@@ -24,3 +24,4 @@ for i=1:k % adicionar cada hashfunction na matrix
     val = mod(31 * val(1) + num2str(i), 2^32 -1);
     h(i) = val(1);
 end
+end
