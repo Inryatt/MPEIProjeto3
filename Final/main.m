@@ -1,4 +1,4 @@
-
+tic
 if ~exist('initi','var')
     initi=initialize();
      load('initialization.mat');
@@ -9,7 +9,7 @@ end
 if initi==0
     disp("ERRO: Programa não inicializado!");
 end
-
+toc
 %% Menu
 clc;
 % Pedir o user ID ao utilizador
